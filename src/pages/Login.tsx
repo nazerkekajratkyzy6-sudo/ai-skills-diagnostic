@@ -19,7 +19,7 @@ export default function Login() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault(); setErr(null); setBusy(true)
     const { data, error } = await supabase.auth.signInWithPassword({ email: loginToEmail(login), password })
-    if (error || !data.session) { setBusy(false); setErr(t('login_err')); return }
+    if (error || !data.session) { setBusy(false); setErr(t('login_err') + (error ? ` (${error.message})` : '')); return }
     const { data: p } = await supabase.from('profiles').select('*').eq('id', data.session.user.id).maybeSingle()
     if (!p || !p.is_active) { await supabase.auth.signOut(); setBusy(false); setErr(p ? t('login_err') : t('login_no_profile')); return }
     await reload(); setBusy(false); nav('/admin', { replace: true })
