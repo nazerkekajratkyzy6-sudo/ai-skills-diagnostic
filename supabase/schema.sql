@@ -675,6 +675,7 @@ returns jsonb language sql stable security definer set search_path = public as $
     'full_name', s.full_name, 'school', sc.name, 'finished_at', s.finished_at,
     'language', s.language, 'group_no', s.group_no,
     'campaign_kk', c.name_kk, 'campaign_ru', c.name_ru,
+    'personal_code', (select personal_code from participants where id = s.participant_id),
     'completed_tasks', (select coalesce(jsonb_agg(jsonb_build_object('title_kk', t.title_kk, 'title_ru', t.title_ru,
                                                       'done', a.score > 0) order by t.position), '[]'::jsonb)
                         from answers a join tasks t on t.id = a.task_id where a.submission_id = s.id))

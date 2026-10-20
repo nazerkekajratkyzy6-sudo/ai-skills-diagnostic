@@ -6,6 +6,8 @@ import Diagnostic from './pages/Diagnostic'
 import Result from './pages/Result'
 import Login from './pages/Login'
 import Setup from './pages/Setup'
+const Cabinet = lazy(() => import('./pages/Cabinet'))
+const CourseModule = lazy(() => import('./pages/CourseModule'))
 const AdminLayout = lazy(() => import('./admin/AdminLayout'))
 const Dashboard = lazy(() => import('./admin/Dashboard'))
 const Schools = lazy(() => import('./admin/Schools'))
@@ -17,6 +19,7 @@ const SubmissionView = lazy(() => import('./admin/SubmissionView'))
 const ParticipantView = lazy(() => import('./admin/ParticipantView'))
 const Compare = lazy(() => import('./admin/Compare'))
 const Settings = lazy(() => import('./admin/Settings'))
+const CourseAdmin = lazy(() => import('./admin/CourseAdmin'))
 import { ToastHost, Loading } from './components'
 
 export default function App() {
@@ -40,6 +43,8 @@ export default function App() {
       <Route path="/d/:schoolCode" element={<Diagnostic />} />
       <Route path="/p/:personalCode" element={<Diagnostic />} />
       <Route path="/r/:token" element={<Result />} />
+      <Route path="/k/:personalCode" element={<Cabinet />} />
+      <Route path="/k/:personalCode/m/:moduleKey" element={<CourseModule />} />
       <Route path="/login" element={<Login />} />
       <Route path="/setup" element={<Setup />} />
       <Route path="/admin" element={<AdminLayout />}>
@@ -52,6 +57,7 @@ export default function App() {
         <Route path="results/:id" element={<SubmissionView />} />
         <Route path="participants/:id" element={<ParticipantView />} />
         <Route path="compare" element={<Compare />} />
+        <Route path="course" element={<CourseAdmin />} />
         <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />

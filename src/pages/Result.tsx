@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { pick, useI18n, type TKey } from '../i18n'
 import { Topbar, Loading, CopyBox } from '../components'
 import { supabase } from '../lib/supabase'
@@ -7,7 +7,7 @@ import { fmtDate } from '../lib/util'
 
 interface ResultInfo {
   full_name: string; school: string; finished_at: string; language: string; group_no: 1 | 2 | 3
-  campaign_kk: string; campaign_ru: string; completed_tasks: { title_kk: string; title_ru: string; done: boolean }[]
+  campaign_kk: string; campaign_ru: string; personal_code?: string | null; completed_tasks: { title_kk: string; title_ru: string; done: boolean }[]
 }
 
 export default function Result() {
@@ -42,6 +42,7 @@ export default function Result() {
             <div className="gname">{t(`group_${g}` as TKey)}</div>
             <div style={{ marginTop: 6, opacity: .95 }}>{t(`group_desc_${g}` as TKey)}</div>
           </div>
+          {r.personal_code && <Link className="btn primary big block" to={`/k/${r.personal_code}`}>{t('cab_open')} →</Link>}
         </div>
         <div className="card">
           <h3>{t('result_tasks')}</h3>
