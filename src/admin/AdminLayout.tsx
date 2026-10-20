@@ -16,9 +16,9 @@ export default function AdminLayout() {
   const isSuper = profile.role === 'super_admin'
   const items: [string, TKey, boolean?][] = isSuper
     ? [['/admin', 'nav_dashboard', true], ['/admin/schools', 'nav_schools'], ['/admin/campaigns', 'nav_campaigns'],
-       ['/admin/results', 'nav_results'], ['/admin/compare', 'nav_compare'], ['/admin/settings', 'nav_settings']]
+       ['/admin/results', 'nav_results'], ['/admin/compare', 'nav_compare'], ['/admin/course', 'nav_course'], ['/admin/settings', 'nav_settings']]
     : [['/admin', 'nav_dashboard', true], [`/admin/schools/${profile.school_id}`, 'nav_my_school'],
-       ['/admin/results', 'nav_results'], ['/admin/compare', 'nav_compare'], ['/admin/settings', 'nav_settings']]
+       ['/admin/results', 'nav_results'], ['/admin/compare', 'nav_compare'], ['/admin/course', 'nav_course'], ['/admin/settings', 'nav_settings']]
 
   const links = items.map(([to, k, end]) => (
     <NavLink key={to} to={to} end={end} className={({ isActive }) => (isActive ? 'active' : '')}>{t(k)}</NavLink>

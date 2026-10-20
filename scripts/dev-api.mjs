@@ -3,6 +3,7 @@
 import http from 'node:http'
 import fs from 'node:fs'
 import handler from '../api/admin.js'
+import courseHandler from '../api/course.js'
 
 for (const f of ['.env.local', '.env']) {
   if (!fs.existsSync(f)) continue
@@ -14,5 +15,6 @@ for (const f of ['.env.local', '.env']) {
 
 http.createServer((req, res) => {
   if (req.url.startsWith('/api/admin')) return handler(req, res)
+  if (req.url.startsWith('/api/course')) return courseHandler(req, res)
   res.statusCode = 404; res.end('not found')
 }).listen(3001, () => console.log('dev api on http://localhost:3001'))

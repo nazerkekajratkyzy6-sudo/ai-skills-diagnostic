@@ -7,6 +7,7 @@ export default function Home() {
   const { t } = useI18n()
   const nav = useNavigate()
   const [code, setCode] = useState('')
+  const cleaned = code.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
   const go = (e: React.FormEvent) => {
     e.preventDefault()
     const c = code.trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
@@ -28,6 +29,9 @@ export default function Home() {
             autoCapitalize="characters" autoComplete="off" className="mono" />
         </label>
         <button className="btn primary big block" type="submit" disabled={!code.trim()}>{t('home_go')}</button>
+        <button className="btn big block" type="button" disabled={cleaned.length < 8}
+          onClick={() => nav(`/k/${cleaned}`)}>{t('cab_open')}</button>
+        <div className="hint center">{t('cab_home_hint')}</div>
       </form>
       <div className="card">
         <h3>{t('home_how')}</h3>

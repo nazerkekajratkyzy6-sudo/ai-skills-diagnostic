@@ -262,3 +262,19 @@ table.schools-table td:first-child { min-width: 220px; }
 .pl-row .know { position: absolute; inset: 0 auto 0 0; background: #bfd0f7; border-radius: 999px; }
 .pl-row .master { position: absolute; inset: 0 auto 0 0; background: var(--primary); border-radius: 999px; }
 .pl-row .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* Кабинет және курс / кабинет и курс (v2.0) */
+.badge.warn { background: var(--warn-50); color: var(--warn); }
+.module-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.module-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text); text-decoration: none; }
+.module-item:hover { border-color: var(--primary); background: var(--primary-50); }
+.module-title { font-weight: 700; }
+.tool-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.tool-grid .btn { text-decoration: none; text-align: center; }
+.rubric { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+.rubric li > span:first-child { margin-right: 8px; }
+.rubric li { display: list-item; }
+.rubric .score { vertical-align: middle; float: right; }
+.hint.ok-text { color: var(--ok); }
+.reco-list { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.reco-list li::marker { color: var(--accent); }

@@ -39,7 +39,7 @@ export async function adminApi<T = unknown>(action: string, payload: Record<stri
 /** Postgres қатесінен қысқа кодты алу (мысалы "already_submitted") */
 export function errCode(e: unknown): string {
   const msg = (e as { message?: string })?.message || String(e)
-  const m = msg.match(/(school_not_found|personal_code_not_found|school_inactive|diagnostic_closed|no_campaign|already_submitted|invalid_name|invalid_choice|demo_exists|forbidden)/)
+  const m = msg.match(/(school_not_found|personal_code_not_found|school_inactive|diagnostic_closed|no_campaign|already_submitted|invalid_name|invalid_choice|demo_exists|forbidden|module_not_found)/)
   if (m) return m[1]
   if (/fetch|network|Failed to fetch|NetworkError/i.test(msg)) return 'network'
   return 'generic'
